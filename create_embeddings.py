@@ -18,16 +18,10 @@ def extract_text_from(url):
     return '\n'.join(line for line in lines if line)
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Embedding website content')
-    parser.add_argument('-s', '--sitemap', type=str, required=False,
-            help='URL to your sitemap.xml', default='https://www.paepper.com/sitemap.xml')
-    parser.add_argument('-f', '--filter', type=str, required=False,
-            help='Text which needs to be included in all URLs which should be considered',
-            default='https://www.paepper.com/blog/posts')
-    args = parser.parse_args()
 
-    r = requests.get(args.sitemap)
+ def scrap_site(url):  
+
+    r = requests.get(url)
     xml = r.text
     raw = xmltodict.parse(xml)
 
@@ -35,8 +29,7 @@ if __name__ == '__main__':
     for info in raw['urlset']['url']:
         # info example: {'loc': 'https://www.paepper.com/...', 'lastmod': '2021-12-28'}
         url = info['loc']
-        if args.filter in url:
-            pages.append({'text': extract_text_from(url), 'source': url})
+        pages.append({'text': extract_text_from(url), 'source': url})
 
     text_splitter = CharacterTextSplitter(chunk_size=1500, separator="\n")
     docs, metadatas = [], []
