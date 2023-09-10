@@ -1,5 +1,3 @@
-This repo reached the front page of hacker news on March 22nd 2023, see the discussion <a href="https://news.ycombinator.com/item?id=35252223" target="_blank">here</a>.
-
 ## Your website content -> chatbot / Q&A agent
 
 Turn your website content into a question answering bot which can cite your document sources.
