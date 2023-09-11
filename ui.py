@@ -88,11 +88,11 @@ def get_chain(vectorstore):
 
 
 # App title
-st.set_page_config(page_title="🤗💬 Algoseed Chat")
+st.set_page_config(page_title="DOFINITY.AI")
 
 # Hugging Face Credentials
 with st.sidebar:
-    st.title('🤗💬 Algoseed Chat')
+    st.title('DOFINITY.AI')
     
     
 # Store LLM generated responses
