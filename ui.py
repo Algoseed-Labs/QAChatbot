@@ -67,7 +67,8 @@ Follow Up Input: {question}
 Standalone question:"""
 CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(_template)
 
-template = """You are an AI assistant for answering questions user asks
+template = """ You are a AI tool build to accept a sitemap.xml url in order to respond to questions regarding the site you are tasked to scrape
+remind the user of this if you are unsure of a response. 
 Question: {question}
 =========
 {context}
@@ -97,7 +98,7 @@ with st.sidebar:
     
 # Store LLM generated responses
 if "messages" not in st.session_state.keys():
-    st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Please Enter A Sitemap.xml url so i can scrape the site and respond properly :) "}]
 
 # Display chat messages
 for message in st.session_state.messages:
@@ -112,7 +113,7 @@ def generate_response(prompt_input):
          store = pickle.load(f)
 
     chain = VectorDBQAWithSourcesChain.from_llm(
-        llm=OpenAI(temperature=0, verbose=True), vectorstore=store, verbose=True)
+        llm=OpenAI(temperature=0.5, verbose=True), vectorstore=store, verbose=True)
     result = chain({"question": prompt_input})
 
     print(f"Answer: {result['answer']}")
