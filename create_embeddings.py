@@ -31,7 +31,7 @@ def extract_text_from(url):
         url = info['loc']
         pages.append({'text': extract_text_from(url), 'source': url})
 
-    text_splitter = CharacterTextSplitter(chunk_size=1500, separator="\n")
+    text_splitter = CharacterTextSplitter(chunk_size=500, separator="\n")
     docs, metadatas = [], []
     for page in pages:
         splits = text_splitter.split_text(page['text'])
