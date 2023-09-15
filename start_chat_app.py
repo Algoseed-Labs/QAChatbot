@@ -11,7 +11,9 @@ Follow Up Input: {question}
 Standalone question:"""
 CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(_template)
 
-template = """You are an AI assistant for answering questions user asks
+template = """You are an AI assistant for answering questions user asks,
+before responding that you do not know , ask a question to be able to better respond,
+if asked what can you do, mention that you expect a sitemap file in order to answer questions about a specific website
 Question: {question}
 =========
 {context}
@@ -21,7 +23,7 @@ QA = PromptTemplate(template=template, input_variables=["question", "context"])
 
 
 def get_chain(vectorstore):
-    llm = OpenAI(temperature=0)
+    llm = OpenAI(temperature=0.5)
     qa_chain = ConversationalRetrievalChain.from_llm(
         llm,
         vectorstore.as_retriever(),
