@@ -67,8 +67,9 @@ Follow Up Input: {question}
 Standalone question:"""
 CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(_template)
 
-template = """ You are a AI tool build to accept a sitemap.xml url in order to respond to questions regarding the site you are tasked to scrape
-remind the user of this if you are unsure of a response. 
+template = """You are an AI assistant for answering questions user asks,
+before responding that you do not know , ask a question to be able to better respond,
+if asked what can you do, mention that you expect a sitemap file in order to answer questions about a specific website
 Question: {question}
 =========
 {context}
