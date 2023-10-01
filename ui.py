@@ -47,7 +47,7 @@ def scrap_site(url):
         url = info['loc']
         pages.append({'text': extract_text_from(url), 'source': url})
 
-    text_splitter = CharacterTextSplitter(chunk_size=500, separator="\n")
+    text_splitter = CharacterTextSplitter(chunk_size=750, separator="\n")
     docs, metadatas = [], []
     for page in pages:
         splits = text_splitter.split_text(page['text'])
@@ -78,7 +78,7 @@ QA = PromptTemplate(template=template, input_variables=["question", "context"])
 
 
 def get_chain(vectorstore):
-    llm = OpenAI(model_name="gpt-3.5-turbo",temperature=0.25)
+    llm = OpenAI(model_name="GPT-4",temperature=0.35)
     qa_chain = ConversationalRetrievalChain.from_llm(
         llm,
         vectorstore.as_retriever(),
