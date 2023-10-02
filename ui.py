@@ -55,7 +55,7 @@ def scrap_site(url):
         metadatas.extend([{"source": page['source']}] * len(splits))
         print(f"Split {page['source']} into {len(splits)} chunks")
 
-    store = FAISS.from_texts(docs, OpenAIEmbeddings(model_name="gpt-4-32k"), metadatas=metadatas)
+    store = FAISS.from_texts(docs, OpenAIEmbeddings(), metadatas=metadatas)
     with open("faiss_store.pkl", "wb") as f:
         pickle.dump(store, f)
 
