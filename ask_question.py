@@ -14,7 +14,7 @@ with open("faiss_store.pkl", "rb") as f:
     store = pickle.load(f)
 
 chain = VectorDBQAWithSourcesChain.from_llm(
-        llm=OpenAI(temperature=0.5, verbose=True), vectorstore=store, verbose=True)
+        llm = OpenAI(model_name="gpt-4-32k",temperature=0.35,verbose=True), vectorstore=store, verbose=True)
 result = chain({"question": args.question})
 
 print(f"Answer: {result['answer']}")
