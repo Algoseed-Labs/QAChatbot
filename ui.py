@@ -79,7 +79,7 @@ QA = PromptTemplate(template=template, input_variables=["question", "context"])
 
 
 def get_chain(vectorstore):
-    llm = OpenAI(model_name="GPT-4",temperature=0.35)
+    llm = OpenAI(model_name="gpt-4-32k",temperature=0.35)
     qa_chain = ConversationalRetrievalChain.from_llm(
         llm,
         vectorstore.as_retriever(),
